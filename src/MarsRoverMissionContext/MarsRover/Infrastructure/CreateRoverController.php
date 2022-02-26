@@ -19,7 +19,7 @@ class CreateRoverController
             $this->roverDTO = new RoverDTO(rand(), $startPositionX, $startPositionY, $direction);
 
             $this->rover = new CreateRoverUseCase(new RoverCreator(new RoverRepository));
-            return $this->rover;
+            return $this->rover->execute($this->roverDTO);
         } catch (Exception $error) {
             return $error;
         }
