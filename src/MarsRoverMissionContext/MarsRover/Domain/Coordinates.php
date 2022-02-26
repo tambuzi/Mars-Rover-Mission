@@ -8,7 +8,7 @@ class Coordinates
 {
     private int $pX;
     private int $pY;
-  
+
 
     private function __contructor(int $positionX, int $positionY)
     {
@@ -16,8 +16,8 @@ class Coordinates
         $this->pY = $positionY;
     }
 
-    public function create(int $positionX, int $positionY)
+    public static function create(int $positionX, int $positionY): self
     {
-        return new Coordinates($positionX, $positionY);
+        return new self($positionX, $positionY);
     }
 }

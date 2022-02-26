@@ -16,12 +16,13 @@ class CreateRoverUseCase
     public function __construct(RoverCreator $roverCreator)
     {
         $this->RoverCreatorRepository = $roverCreator;
-        $this->roverCoordinatesRepository = new Coordinates();
+
     }
 
     public function execute(RoverDTO $rover)
     {
-        $this->roverCoordinates = $this->roverCoordinatesRepository->create($rover->startingPointX, $rover->startingPointY);
+        $this->roverCoordinates = Coordinates::create($rover->startingPointX, $rover->startingPointY);
+
         $this->roverCreatorRepository->createRover($rover->id, $this->roverCoordinates, $rover->direction);
     }
 }
