@@ -1,4 +1,5 @@
 <?php
+namespace Laraveltip\MarsRoverMisionContext\MarsRover\Application\Meteorite\GetMeteoritesUseCase;
 
 use Laraveltip\MarsRoverMisionContext\MarsRover\Application\Meteorite\CreateMeteoriteUseCase\CreateMeteoriteUseCase;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCreator\MeteoriteCreator;
