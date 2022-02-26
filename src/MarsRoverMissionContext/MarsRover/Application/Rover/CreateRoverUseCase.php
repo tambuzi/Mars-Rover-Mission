@@ -11,7 +11,7 @@ class CreateRoverUseCase
 
     private $roverCreatorRepository;
     private $roverCoordinates;
-    private $roverCoordinatesRepository;
+
 
     public function __construct(RoverCreator $roverCreator)
     {
