@@ -2,21 +2,22 @@
 
 namespace Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Coordinates\Coordinates;
 
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\RoverPosition\RoverPosition;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Position\Position;
+
 
 class Coordinates
 {
-    private RoverPosition $pX;
-    private RoverPosition $pY;
+    private Position $pX;
+    private Position $pY;
 
 
-    private function __contructor(RoverPosition $positionX, RoverPosition $positionY)
+    private function __contructor(Position $positionX, Position $positionY)
     {
         $this->pX = $positionX;
         $this->pY = $positionY;
     }
 
-    public static function create(RoverPosition $positionX, RoverPosition $positionY): self
+    public static function create(Position $positionX, Position $positionY): self
     {
         return new self($positionX, $positionY);
     }

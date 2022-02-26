@@ -7,7 +7,7 @@ use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Coordinates\Coordinates\C
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Rover\RoverCreator\RoverCreator;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\RoverDirection\RoverDirection;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\RoverId\RoverId;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\RoverPosition\RoverPosition;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Position\Position;
 
 class CreateRoverUseCase
 {
@@ -26,8 +26,8 @@ class CreateRoverUseCase
     {
         $this->roverId = new RoverId($rover->id);
         $this->direction = new RoverDirection($rover->direction);
-        $this->startingPointX = new RoverPosition($rover->startingPointX);
-        $this->startingPointY = new RoverPosition($rover->startingPointY);
+        $this->startingPointX = new Position($rover->startingPointX);
+        $this->startingPointY = new Position($rover->startingPointY);
         $this->roverCoordinates = Coordinates::create($this->startingPointX, $this->startingPointY);
 
         $this->roverCreatorRepository->createRover($this->roverId, $this->roverCoordinates, $this->roverDirection);

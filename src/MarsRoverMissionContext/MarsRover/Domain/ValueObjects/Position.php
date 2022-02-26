@@ -1,11 +1,11 @@
 <?php
 
-namespace Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\RoverPosition;
+namespace Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Position;
 
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Exceptions\ValueObjects\NumberNotIntException\NumberNotIntException;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Exceptions\ValueObjects\OutOfRangeException\OutOfRangeException;
 
-class RoverPosition
+class Position
 {
 
     private int $position;
