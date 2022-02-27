@@ -25,7 +25,9 @@ class MeteoriteCreatorUnitTest extends TestCase
         $expectedResponse = new Meteorite($mockCoordinates);
 
         $this->assertTrue($mockRepository->createMeteorite($mockCoordinates) == $expectedResponse);
+
     }
+
 
 
 }
