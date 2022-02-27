@@ -7,9 +7,9 @@ use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\Meteorite;
 class MeteoriteCollection
 {
 
-    private array $meteoriteCollection ;
+    private array $meteoriteCollection = [] ;
 
-    private function __contructor(array $meteorites = null)
+    private function __construct(array $meteorites)
     {
         $this->meteoriteCollection = $meteorites;
     }
@@ -26,6 +26,6 @@ class MeteoriteCollection
 
     public static function emptyCollection()
     {
-        return new MeteoriteCollection();
+        return new MeteoriteCollection([]);
     }
 }

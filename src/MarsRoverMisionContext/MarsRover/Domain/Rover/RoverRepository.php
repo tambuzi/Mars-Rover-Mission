@@ -12,5 +12,5 @@ interface RoverRepository
 
     public function createRover(RoverId $roverId, Coordinates $startingPoint, RoverDirection $direction);
 
-    public function moveRover(RoverId $roverId, Movements $movement);
+    public function moveRover(RoverId $roverId,  $movement);
 }

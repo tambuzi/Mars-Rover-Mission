@@ -9,15 +9,11 @@ class Meteorite
     private Coordinates $position;
 
 
-    private function __contructor(Coordinates $position)
+    public function __construct(Coordinates $position)
     {
 
         $this->position = $position;
    
     }
 
-    public static function create(Coordinates $position)
-    {
-        return new Meteorite($position);
-    }
 }

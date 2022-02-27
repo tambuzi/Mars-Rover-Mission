@@ -15,7 +15,7 @@ class MoveRoverUseCase
 
     public function __construct(RoverMover $roverMover)
     {
-        
+
         $this->roverMoverRepository = $roverMover;
     }
 
@@ -23,10 +23,14 @@ class MoveRoverUseCase
     public function execute(RoverMoveDTO $roverMoveDTO)
     {
 
-        $this->movements = new Movements($roverMoveDTO->movements);
+        $this->movements = new Movements($roverMoveDTO->move);
+
         $this->roverId = new RoverId($roverMoveDTO->id);
-        foreach ($this->movements as $movement) {
-            $this->roverMoverRepository->moveRover($this->roverId, $movement);
+        foreach ($this->movements->value() as $movement) {
+            if (!$this->roverMoverRepository->moveRover($this->roverId, $movement)) {
+                return false;
+            }
         }
+        return true;
     }
 }

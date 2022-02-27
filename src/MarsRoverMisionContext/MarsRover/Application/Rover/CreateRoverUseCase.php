@@ -29,7 +29,7 @@ class CreateRoverUseCase
         $this->direction = new RoverDirection($rover->direction);
         $this->startingPointX = new Position($rover->startingPointX);
         $this->startingPointY = new Position($rover->startingPointY);
-        $this->roverCoordinates = Coordinates::create($this->startingPointX, $this->startingPointY);
+        $this->roverCoordinates = new Coordinates($this->startingPointX, $this->startingPointY);
         
         return $this->roverCreatorRepository->createRover($this->roverId, $this->roverCoordinates, $this->direction);
     }

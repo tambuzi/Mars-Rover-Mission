@@ -18,7 +18,7 @@ class RoverMover
         $this->repository = $roverRepository;
     }
 
-    public function moveRover(RoverId $roverId, Movements $move)
+    public function moveRover(RoverId $roverId, $move)
     {
         return $this->repository->moveRover($roverId, $move);
     }

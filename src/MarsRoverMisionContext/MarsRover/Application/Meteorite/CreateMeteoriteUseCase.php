@@ -12,9 +12,10 @@ use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCollec
 class CreateMeteoriteUseCase
 {
 
-    private $meteoriteCreatorRepository;
-    private $meteoriteCoordinates;
-    private array $meteorites;
+    private MeteoriteCreator $meteoriteCreatorRepository;
+    private Coordinates $meteoriteCoordinates;
+    private Position $positionX;
+    private Position $positionY;
 
 
     public function __construct(MeteoriteCreator $meteoriteCreator)
@@ -25,12 +26,12 @@ class CreateMeteoriteUseCase
     public function execute()
     {
         $this->meteoriteCreatorRepository->createMeteoriteCollection();
-        for ($i = 0; $i <= random_int(0, 30); $i++) {
+        for ($i = 0; $i <= random_int(20, 100); $i++) {
             $this->positionX = new Position(random_int(0, 200));
             $this->positionY = new Position(random_int(0, 200));
-            $this->meteoriteCoordinates = Coordinates::create($this->startingPointX, $this->startingPointY);
-
-            return $this->meteoriteCreatorRepository->createMeteorite($this->meteoriteCoordinates);
+            $this->meteoriteCoordinates =  new Coordinates($this->positionX, $this->positionY);
+            
+            $this->meteoriteCreatorRepository->createMeteorite($this->meteoriteCoordinates);
         }
     }
 }

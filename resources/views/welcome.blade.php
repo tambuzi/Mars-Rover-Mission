@@ -14,20 +14,20 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <script>
-        /* $(document).on("submit", "#form", function(e) {
-                $.noConflict();
-                console.log("entra");
-                e.preventDefault();
-                const data = $("#form").serialize();
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost/MarsRoverLaravelController/",
-                    data: data,
-                }).done(function(result) {
-                    const data = JSON.parse(result);
-                    console.log(data);
-                });
-            });*/
+        $(document).on("submit", "#form", function(e) {
+            $.noConflict();
+            e.preventDefault();
+            const data = $("#form").serialize();
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/MarsRoverLaravelController/",
+                data: data,
+            }).done(function(result) {
+                const data = JSON.parse(result);
+                console.log(data);
+                $("#response").html(result);
+            });
+        });
     </script>
     <!-- Styles -->
 
@@ -38,6 +38,10 @@
             margin: 2em;
         }
 
+        #response {
+            margin-top: 2em;
+        }
+
     </style>
 </head>
 
@@ -46,7 +50,7 @@
         <h3>Mars Rover Mission</h3>
     </div>
     <div>
-        <form id="form" action="http://localhost/MarsRoverLaravelController" method="POST">
+        <form id="form">
             @csrf
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -80,6 +84,8 @@
             </div>
             <button type="submit" class="btn btn-primary">Ejecutar misión</button>
         </form>
+
+        <div id="response"></div>
     </div>
 </body>
 
