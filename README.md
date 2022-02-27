@@ -4,7 +4,7 @@ Ejercicio realizado por Alejandro Fernández.
 
 ## 1. Contexto 📋
 
-El resto consiste en elaborar un sistema que permita que la nave (Mars Rover) sea capaz de llegar a su destino final sin colisionar con ningún obstáculo.
+El reto consiste en elaborar un sistema que permita que la nave (Mars Rover) sea capaz de llegar a su destino final sin colisionar con ningún obstáculo.
 Para ello, se ha creado una interfaz gráfica sencilla en la que el usuario debe introducir la posición inicial de na nave (Eje X y Eje Y), junto con la orientación (Norte, Sur, Este y Oeste) y los movimientos que debe realizar la nave (F, R, L).
 Una vez introducidos los datos, la aplicación nos retorna un JSON con la información del viaje espacial.
 `{"statusCode":200,"startPosition":"10, 20","endPosition":"20, 20","message":"la nave ha llegado a su destino"}`
