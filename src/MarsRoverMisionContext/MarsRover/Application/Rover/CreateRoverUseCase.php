@@ -12,14 +12,15 @@ use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Position;
 class CreateRoverUseCase
 {
 
-    private $roverCreatorRepository;
+    private RoverCreator $roverCreatorRepository;
     private $roverCoordinates;
     private $roverId;
     private $roverDirection;
 
     public function __construct(RoverCreator $roverCreator)
     {
-        $this->RoverCreatorRepository = $roverCreator;
+        $this->roverCreatorRepository = $roverCreator;
+    
     }
 
     public function execute(RoverDTO $rover)
@@ -29,7 +30,7 @@ class CreateRoverUseCase
         $this->startingPointX = new Position($rover->startingPointX);
         $this->startingPointY = new Position($rover->startingPointY);
         $this->roverCoordinates = Coordinates::create($this->startingPointX, $this->startingPointY);
-
-        $this->roverCreatorRepository->createRover($this->roverId, $this->roverCoordinates, $this->roverDirection);
+        
+        return $this->roverCreatorRepository->createRover($this->roverId, $this->roverCoordinates, $this->direction);
     }
 }

@@ -3,23 +3,23 @@
 namespace Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\Persistance;
 
 use Exception;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Coordinates\Coordinates\Coordinates;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Coordinates;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\Meteorite;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCollection\MeteoriteCollection;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteRepository\MeteoriteRepository;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Rover\Rover\Rover;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Rover\RoverRepository\RoverRepository;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Movements\Movements;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Position\Position;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\RoverId\RoverId;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\RoverDirection\RoverDirection;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCollection;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteRepository;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Rover\Rover;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Rover\RoverRepository;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Movements;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Position;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\RoverId;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\RoverDirection;
 
 class PersistanceRoverRepository implements RoverRepository, MeteoriteRepository
 {
 
-    private static Rover $rover;
-    private static Meteorite $meteorite;
-    private static MeteoriteCollection $meteoriteCollection;
+    private Rover $rover;
+    private Meteorite $meteorite;
+    private MeteoriteCollection $meteoriteCollection;
 
 
 
@@ -50,7 +50,8 @@ class PersistanceRoverRepository implements RoverRepository, MeteoriteRepository
     }
     public function createRover(RoverId $roverId, Coordinates $startingPoint, RoverDirection $direction)
     {
-        $this->rover = Rover::create($roverId, $startingPoint, $direction);
+        $this->rover = new Rover($roverId, $startingPoint, $direction);
+
         return $this->rover;
     }
     public function moveRover(RoverId $roverId, Movements $movement)

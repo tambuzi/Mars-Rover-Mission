@@ -36,7 +36,8 @@ class MarsRoverLaravelController extends Controller
         $this->direction = $request->input('direction');
         $this->movements = $request->input('movements');
         try {
-            $this->createRoverController = new CreateRoverController($this->persistanceRepository);
+            $this->createRoverController = new CreateRoverController($this->persistanceRepository); 
+            print_r($this->createRoverController->create($this->roverPositionX, $this->roverPositionY, $this->direction));
         } catch (Exception $e) {
             return $e;
         }

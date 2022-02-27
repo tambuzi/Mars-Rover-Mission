@@ -5,10 +5,10 @@ namespace Laraveltip\MarsRoverMisionContext\MarsRover\Application\Rover;
 class RoverDTO
 {
 
-    private int $id;
-    private int $startingPointX;
-    private int $startingPointY;
-    private string $direction;
+    public int $id;
+    public int $startingPointX;
+    public int $startingPointY;
+    public string $direction;
 
     public function __construct(int $id, int $startingPointX, int $startingPointY, string $direction)
     {

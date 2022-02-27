@@ -8,10 +8,10 @@ use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Exceptions\ValueObjects\N
 class RoverDirection
 {
 
-    private int $direction;
+    private string $direction;
     private array $validDireccions = ["N", "S", "E", "O"];
 
-    public function __construct(int $roverDirection)
+    public function __construct(string $roverDirection)
     {
         if (!is_string($roverDirection)) {
             throw new NotStringException();

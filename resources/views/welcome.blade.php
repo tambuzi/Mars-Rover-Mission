@@ -14,20 +14,20 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <script>
-       /* $(document).on("submit", "#form", function(e) {
-            $.noConflict();
-            console.log("entra");
-            e.preventDefault();
-            const data = $("#form").serialize();
-            $.ajax({
-                type: "POST",
-                url: "http://localhost/MarsRoverLaravelController/",
-                data: data,
-            }).done(function(result) {
-                const data = JSON.parse(result);
-                console.log(data);
-            });
-        });*/
+        /* $(document).on("submit", "#form", function(e) {
+                $.noConflict();
+                console.log("entra");
+                e.preventDefault();
+                const data = $("#form").serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/MarsRoverLaravelController/",
+                    data: data,
+                }).done(function(result) {
+                    const data = JSON.parse(result);
+                    console.log(data);
+                });
+            });*/
     </script>
     <!-- Styles -->
 
@@ -47,21 +47,24 @@
     </div>
     <div>
         <form id="form" action="http://localhost/MarsRoverLaravelController" method="POST">
+            @csrf
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Posición inicial X:</span>
                 </div>
-                <input type="text" id="roverPositionX" class="form-control" placeholder="Posición inicial X" required>
+                <input type="text" id="roverPositionX" class="form-control" name="roverPositionX" value=""
+                    placeholder="Posición inicial X" required>
                 <div class="input-group-prepend">
                     <span class="input-group-text">Posición inicial Y:</span>
                 </div>
-                <input type="text" id="roverPositionY" class="form-control" placeholder="Posición inicial Y" required>
+                <input type="text" id="roverPositionY" class="form-control" name="roverPositionY" value=""
+                    placeholder="Posición inicial Y" required>
             </div>
             <div class="form-group mt-3 mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Orientación:</span>
                 </div>
-                <select class="form-control" id="direccion" required>
+                <select class="form-control" id="direction" name="direction" required>
                     <option value="N">Norte</option>
                     <option value="S">Sur</option>
                     <option value="E">Este</option>
@@ -72,7 +75,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Movimientos (F, L, R):</span>
                 </div>
-                <input type="text" id="movements" class="form-control"
+                <input type="text" id="movements" class="form-control" name="movements"
                     placeholder="Inserte los movimientos que debe hacer la nave" required>
             </div>
             <button type="submit" class="btn btn-primary">Ejecutar misión</button>
