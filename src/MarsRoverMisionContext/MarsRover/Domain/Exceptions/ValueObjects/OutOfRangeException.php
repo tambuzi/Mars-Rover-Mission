@@ -9,6 +9,6 @@ class OutOfRangeException extends Exception
 {
     public function __construct()
     {
-        abort(500, 'Position Out Of Range.');
+        throw new Exception( 'Position Out Of Range.');
     }
 }

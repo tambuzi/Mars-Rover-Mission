@@ -9,6 +9,6 @@ class NotValidMovementException extends Exception
 {
     public function __construct()
     {
-        abort(500, 'Not Valid Movement.');
+        throw new Exception('Not Valid Movement.');
     }
 }

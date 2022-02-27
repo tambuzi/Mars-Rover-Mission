@@ -9,6 +9,6 @@ class NumberNotIntException extends Exception
 {
     public function __construct()
     {
-        abort(500, 'Number not Int.');
+        throw new Exception('Number not Int.');
     }
 }
