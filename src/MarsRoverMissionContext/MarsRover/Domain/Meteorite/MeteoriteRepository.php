@@ -12,4 +12,6 @@ interface MeteoriteRepository
     public function searchMeteorite(Coordinates $position);
 
     public function createMeteoriteCollection();
+
+    public function getAllMeteorites();
 }

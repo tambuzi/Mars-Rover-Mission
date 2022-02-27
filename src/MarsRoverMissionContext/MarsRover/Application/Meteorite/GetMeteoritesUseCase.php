@@ -13,11 +13,7 @@ class GetMeteoritesUseCase
 
 
     public function execute()
-    {for ($i = 0; $i <= random_int(0, 30); $i++) {
-
-        $meteorite = new CreateMeteoriteUseCase(new MeteoriteCreator(new MeteoriteRepository()));
-        array_push($meteorites, $meteorite->execute());
-    }
-    return MeteoriteCollection::create($meteorites);
+    {
+        
     }
 }

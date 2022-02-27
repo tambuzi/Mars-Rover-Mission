@@ -2,6 +2,7 @@
 
 namespace Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\Persistance\PersistanceRoverRepository;
 
+use Exception;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Coordinates\Coordinates\Coordinates;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\Meteorite;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCollection\MeteoriteCollection;
@@ -30,6 +31,12 @@ class PersistanceRoverRepository implements RoverRepository, MeteoriteRepository
     }
     public function searchMeteorite(Coordinates $position)
     {
+        foreach ($this->meteoriteCollection as $meteorite) {
+            if ($position->pX->value() == $meteorite->position->pX->value() && $position->pY->value() == $meteorite->position->pY->value()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function getAllMeteorites()
@@ -51,23 +58,25 @@ class PersistanceRoverRepository implements RoverRepository, MeteoriteRepository
 
         $realmovement = $this->calculateMovement($movement, $this->rover->direction->value);
         $coordinates = $this->calculateNewPosition($realmovement, $this->rover->position);
-
-        $this->rover->updateCoordinates($coordinates);
+        if ($this->searchMeteorite($coordinates)) {
+            return $this->rover->updateCoordinates($coordinates);
+        }
+        return false;
     }
 
     private function calculateNewPosition($realmovement, $roverPosition)
     {
         if ($realmovement == "up") {
-            return Coordinates::create(new Position($roverPosition->pX->value()), new Position($roverPosition->pY->value() + 1));
+            return Coordinates::create(new Position($roverPosition->pX->value()), new Position($roverPosition->pY->value() + 5));
         }
         if ($realmovement == "down") {
-            return Coordinates::create(new Position($roverPosition->pX->value() - 1), new Position($roverPosition->pY->value()));
+            return Coordinates::create(new Position($roverPosition->pX->value() - 5), new Position($roverPosition->pY->value()));
         }
         if ($realmovement == "left") {
-            return Coordinates::create(new Position($roverPosition->pX->value() + 1), new Position($roverPosition->pY->value()));
+            return Coordinates::create(new Position($roverPosition->pX->value() + 5), new Position($roverPosition->pY->value()));
         }
         if ($realmovement == "right") {
-            return Coordinates::create(new Position($roverPosition->pX->value() + 1), new Position($roverPosition->pY->value()));
+            return Coordinates::create(new Position($roverPosition->pX->value() + 5), new Position($roverPosition->pY->value()));
         }
     }
     private function calculateMovement($movement, $direction)
