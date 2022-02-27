@@ -1,13 +1,13 @@
 <?php
 
-namespace Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCreator;
+namespace Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCollectionGetter;
 
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Coordinates\Coordinates\Coordinates;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\Meteorite\Meteorite;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteRepository\MeteoriteRepository;
 
 
-class MeteoriteCreator
+class MeteoriteCollectionGetter
 {
     private MeteoriteRepository $repository;
 
@@ -16,13 +16,8 @@ class MeteoriteCreator
         $this->repository = $meteoriteRepository;
     }
 
-    public function createMeteorite(Coordinates $position)
+    public function getCollection()
     {
-        return $this->repository->createMeteorite($position);
-    }
-
-    public function createMeteoriteCollection()
-    {
-        return $this->repository->createMeteoriteCollection();
+        return $this->repository->getAllMeteorites();
     }
 }
