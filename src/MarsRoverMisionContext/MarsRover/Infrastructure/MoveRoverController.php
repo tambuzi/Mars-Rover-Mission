@@ -22,9 +22,11 @@ class MoveRoverController
     public function move(int $id, string $movements)
     {
         $this->roverMoveDTO = RoverMoveDTO::create($id, $movements);
+      
         try {
             $this->movement = new MoveRoverUseCase(new RoverMover($this->persistanceRepository));
-            $this->movement->execute($this->roverMoveDTO);
+            
+            return $this->movement->execute($this->roverMoveDTO);
         } catch (Exception $e) {
             return $e;
         }

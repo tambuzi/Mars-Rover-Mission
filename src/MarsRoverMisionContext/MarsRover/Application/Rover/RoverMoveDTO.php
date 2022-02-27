@@ -5,8 +5,8 @@ namespace Laraveltip\MarsRoverMisionContext\MarsRover\Application\Rover;
 class RoverMoveDTO
 {
 
-    private int $id;
-    private array $move;
+    public int $id;
+    public array $move;
 
 
     private function __construct(int $id, array $move)

@@ -8,7 +8,7 @@ use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\RoverId;
 
 class Rover
 {
-    public RoverId $id;
+    private RoverId $id;
     private Coordinates $position;
     private RoverDirection $direction;
 
@@ -18,9 +18,23 @@ class Rover
         $this->position = $startingPoint;
         $this->direction = $direction;
     }
-   
+
     public function updateCoordinates(Coordinates $position)
     {
         $this->position = $position;
+    }
+
+    public function getId()
+    {
+        return $this->id->value();
+    }
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    public function getDirection()
+    {
+        return $this->direction->value();
     }
 }
