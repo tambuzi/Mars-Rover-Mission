@@ -4,17 +4,20 @@ namespace Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\CreateCanva
 
 
 use Exception;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Application\Meteorite\GetMeteoritesUseCase\GetMeteoritesUseCase;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Application\Meteorite\CreateMeteoriteUseCase\CreateMeteoriteUseCase;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCreator\MeteoriteCreator;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\Persistance\PersistanceRoverRepository\PersistanceRoverRepository;
 
 class CreateCanvasMeteoritesController
 {
 
-    private GetMeteoritesUseCase $canvas; 
+    private CreateMeteoriteUseCase $canvas; 
 
     public function create()
     {
         try {
-            $this->canvas = new GetMeteoritesUseCase();
+            
+            $this->canvas = new CreateMeteoriteUseCase(new MeteoriteCreator(new PersistanceRoverRepository()));
             return $this->canvas->execute();
         } catch (Exception $error) {
             return $error;
