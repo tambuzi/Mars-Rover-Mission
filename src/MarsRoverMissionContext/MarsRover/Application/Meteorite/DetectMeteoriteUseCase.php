@@ -1,6 +1,6 @@
 <?php
 
-namespace Laraveltip\MarsRoverMisionContext\MarsRover\Application\Meteorite\DetectObstacleUseCase;
+namespace Laraveltip\MarsRoverMisionContext\MarsRover\Application\Meteorite\DetectMeteoriteUseCase;
 
 
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Coordinates\Coordinates\Coordinates;
@@ -8,7 +8,7 @@ use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Position\Pos
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCollection\MeteoriteCollection;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteSearcher\MeteoriteSearcher;
 
-class DetectObstacleUseCase
+class DetectMeteoriteUseCase
 {
 
     private $meteoriteSearcherRepository;
