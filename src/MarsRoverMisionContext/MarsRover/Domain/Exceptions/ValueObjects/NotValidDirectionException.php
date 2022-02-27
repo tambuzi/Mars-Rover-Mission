@@ -9,6 +9,6 @@ class NotValidDirectionException extends Exception
 {
     public function __construct()
     {
-        abort(500, 'Not Valid Direction.');
+        throw new Exception('Not Valid Direction.');
     }
 }

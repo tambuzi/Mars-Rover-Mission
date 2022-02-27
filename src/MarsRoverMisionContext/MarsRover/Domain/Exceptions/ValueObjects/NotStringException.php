@@ -9,6 +9,6 @@ class NotStringException extends Exception
 {
     public function __construct()
     {
-        abort(500, 'Input not String.');
+        throw new Exception('Input not String.');
     }
 }
