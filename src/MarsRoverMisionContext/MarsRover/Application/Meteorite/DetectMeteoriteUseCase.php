@@ -1,6 +1,8 @@
 <?php
 
+
 namespace Laraveltip\MarsRoverMisionContext\MarsRover\Application\Meteorite;
+
 
 
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Coordinates;
