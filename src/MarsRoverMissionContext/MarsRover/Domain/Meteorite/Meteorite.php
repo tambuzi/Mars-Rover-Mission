@@ -16,7 +16,7 @@ class Meteorite
    
     }
 
-    public function create(Coordinates $position)
+    public static function create(Coordinates $position)
     {
         return new Meteorite($position);
     }

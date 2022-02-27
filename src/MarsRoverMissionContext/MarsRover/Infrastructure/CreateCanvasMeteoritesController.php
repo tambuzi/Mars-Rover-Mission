@@ -9,7 +9,7 @@ use Laraveltip\MarsRoverMisionContext\MarsRover\Application\Meteorite\GetMeteori
 class CreateCanvasMeteoritesController
 {
 
-    private GetMeteoritesUseCase $canvas;
+    private GetMeteoritesUseCase $canvas; 
 
     public function create()
     {

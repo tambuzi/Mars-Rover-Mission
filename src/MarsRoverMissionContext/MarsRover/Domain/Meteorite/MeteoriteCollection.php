@@ -1,11 +1,15 @@
 <?php
+
 namespace Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCollection;
 
-class MeteoriteCollection {
+use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\Meteorite;
 
-    private array $meteoriteCollection;
+class MeteoriteCollection
+{
 
-    private function __contructor(array $meteorites)
+    private array $meteoriteCollection ;
+
+    private function __contructor(array $meteorites = null)
     {
         $this->meteoriteCollection = $meteorites;
     }
@@ -13,5 +17,15 @@ class MeteoriteCollection {
     public static function create(array $meteorites)
     {
         return new MeteoriteCollection($meteorites);
+    }
+
+    public function addMeteorite(Meteorite $meteorite)
+    {
+        array_push($this->meteoriteCollection, $meteorite);
+    }
+
+    public static function emptyCollection()
+    {
+        return new MeteoriteCollection();
     }
 }

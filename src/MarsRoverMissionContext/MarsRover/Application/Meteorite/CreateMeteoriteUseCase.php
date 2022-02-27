@@ -24,14 +24,13 @@ class CreateMeteoriteUseCase
 
     public function execute()
     {
-        
-
+        $this->meteoriteCreatorRepository->createMeteoriteCollection();
+        for ($i = 0; $i <= random_int(0, 30); $i++) {
             $this->positionX = new Position(random_int(0, 200));
             $this->positionY = new Position(random_int(0, 200));
             $this->meteoriteCoordinates = Coordinates::create($this->startingPointX, $this->startingPointY);
 
             return $this->meteoriteCreatorRepository->createMeteorite($this->meteoriteCoordinates);
-            
-        
+        }
     }
 }
