@@ -5,8 +5,9 @@ namespace Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\CreateRover
 use Laraveltip\MarsRoverMisionContext\MarsRover\Application\Rover\CreateRoverUseCase\CreateRoverUseCase;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Application\Rover\RoverDTO\RoverDTO;
 use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Rover\RoverCreator\RoverCreator;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Rover\RoverRepository\RoverRepository;
+
 use Exception;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\Persistance\PersistanceRoverRepository\PersistanceRoverRepository;
 
 class CreateRoverController
 {
@@ -18,7 +19,7 @@ class CreateRoverController
         try {
             $this->roverDTO = new RoverDTO(rand(), $startPositionX, $startPositionY, $direction);
 
-            $this->rover = new CreateRoverUseCase(new RoverCreator(new RoverRepository));
+            $this->rover = new CreateRoverUseCase(new RoverCreator(new PersistanceRoverRepository()));
             return $this->rover->execute($this->roverDTO);
         } catch (Exception $error) {
             return $error;
