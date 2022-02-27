@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\MarsRoverLaravelController;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Exception;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Position\Position;
 use Illuminate\Http\Request;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\CreateCanvasMeteoritesController\CreateCanvasMeteoritesController;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\CreateRoverController\CreateRoverController;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\MoveRoverController\MoveRoverController;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\Persistance\PersistanceRoverRepository\PersistanceRoverRepository;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\CreateCanvasMeteoritesController;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\CreateRoverController;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\MoveRoverController;
+use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\Persistance\PersistanceRoverRepository;
 
 class MarsRoverLaravelController extends Controller
 {
