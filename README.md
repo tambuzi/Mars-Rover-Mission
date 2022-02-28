@@ -25,11 +25,9 @@ Para realizar esta aplicación se han usado las siguientes tecnologías:
 ## 3. Ejecución
 
 Se recomienda levantar la aplicación dentro de Docker.
-<<<<<<< Updated upstream
-Para ello, abrir el directorio raíz del proyecto con la consola WSL y ejecutar el siguiente comando: `./vendor/bin/sail up` o levantar los contenedores mediante `docker-compose up`
-=======
+
 Para ello, abrir el directorio raíz del proyecto con la consola WSL y ejecutar el instalador `composer install`. Posteriormente, ejecutar el siguiente comando: `./vendor/bin/sail up` o levantar los contenedores mediante `docker-compose up`
->>>>>>> Stashed changes
+
 Para visualizar el aplicativo, se debe entrar en http://localhost .
 
 Para lanzar los test, se debe entrar dentro del contenedor docker de Laravel y ejecutar el siguiente comando: `php artisan test`
