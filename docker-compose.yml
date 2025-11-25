@@ -1,52 +1,69 @@
 # For more information: https://laravel.com/docs/sail
-version: '3'
 services:
-    laravel:
+    mars-rover:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.1
+            context: docker/php/apache
             dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-        image: sail-8.1/app
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
+        container_name: mars-rover
+        image: 'mars-rover:latest'
+        env_file:
+            - .env
+        volumes:
+            - .:/var/www/html
         ports:
             - '${APP_PORT:-80}:80'
-        environment:
-            WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
-        volumes:
-            - '.:/var/www/html'
         networks:
-            - sail
+            - mars-rover
+        depends_on:
+            - rabbitmq
+            - redis
+
+    rabbitmq-consumer:
+        build:
+            context: docker/php/cli
+            dockerfile: Dockerfile
+        container_name: rabbitmq-consumer
+        image: 'mars-rover-consumer:latest'
+        ports:
+            - '81:81'
+        env_file:
+            - .env
+        volumes:
+            - .:/var/www/html
+        networks:
+            - mars-rover
         depends_on:
             - redis
-            - selenium
-    
+            - rabbitmq
+
     redis:
-        image: 'redis:alpine'
+        image: 'redis:7-alpine'
+        platform: linux/amd64
+        container_name: redis
         ports:
             - '${FORWARD_REDIS_PORT:-6379}:6379'
         volumes:
-            - 'sail-redis:/data'
+            - 'redis:/data'
         networks:
-            - sail
+            - mars-rover
         healthcheck:
             test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
-    selenium:
-        image: 'selenium/standalone-chrome'
-        volumes:
-            - '/dev/shm:/dev/shm'
+
+    rabbitmq:
+        image: 'rabbitmq:management-alpine'
+        container_name: rabbitmq
+        ports:
+            - "5672:5672"
+            - "15672:15672"
         networks:
-            - sail
+            - mars-rover
+
+
 networks:
-    sail:
+    mars-rover:
         driver: bridge
 volumes:
-
-    sail-redis:
+    redis:
         driver: local
