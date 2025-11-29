@@ -2,17 +2,16 @@
 
 namespace Tests\Unit;
 
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Coordinates;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\Meteorite;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\Meteorite\MeteoriteCreator;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Position;
-use Laraveltip\MarsRoverMisionContext\MarsRover\Infrastructure\Persistance\PersistanceRoverRepository;
-use OutOfRangeException;
+use MarsRoverMission\MarsRoverMission\MarsRoverMisionContext\MarsRover\Domain\Coordinates;
+use MarsRoverMission\MarsRoverMission\MarsRoverMisionContext\MarsRover\Domain\Meteorite\Entity\Meteorite;
+use MarsRoverMission\MarsRoverMission\MarsRoverMisionContext\MarsRover\Domain\Meteorite\Service\CreateMeteoriteService;
+use MarsRoverMission\MarsRoverMission\MarsRoverMisionContext\MarsRover\Domain\ValueObjects\Position;
+use MarsRoverMission\MarsRoverMission\MarsRoverMisionContext\MarsRover\Infrastructure\Persistance\PersistanceRoverRepository;
 use PHPUnit\Framework\TestCase;
 
 class MeteoriteCreatorUnitTest extends TestCase
 {
-    /** @test */
+    /** @php */
     public function test_create_meteorite_should_return_meteorite()
     {
         $positionX = new Position(random_int(0, 200));
@@ -21,7 +20,7 @@ class MeteoriteCreatorUnitTest extends TestCase
         $persistanceMockReposotory = new PersistanceRoverRepository();
         $persistanceMockReposotory->createMeteoriteCollection();
 
-        $mockRepository = new MeteoriteCreator($persistanceMockReposotory);
+        $mockRepository = new CreateMeteoriteService($persistanceMockReposotory);
         $expectedResponse = new Meteorite($mockCoordinates);
 
         $this->assertTrue($mockRepository->createMeteorite($mockCoordinates) == $expectedResponse);
