@@ -1,0 +1,19 @@
+namespace: Tests
+bootstrap: '_bootstrap.php'
+actor: Tester
+paths:
+    tests: tests
+    output: storage/tests/output
+    data: storage/tests/data
+    support: tests/_support
+    envs: tests/_envs
+coverage:
+    enabled: true
+    include:
+        - src/*
+    exclude:
+        - vendor/*
+        - tests/*
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed

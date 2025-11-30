@@ -2,6 +2,7 @@
 
 # Servicio por defecto para entrar (cámbialo si prefieres otro)
 DEFAULT_SERVICE=mars-rover
+DEFAULT_SERVICE_TEST=mars-rover-test
 
 # ------------------------
 # Comandos de Docker
@@ -11,12 +12,14 @@ install: build
 
 
 up:
+	cp .env.app .env
 	docker compose up
 
 down:
 	docker compose down
 
 build:
+	cp .env.app .env
 	@if [ "$(FORCE)" ]; then \
 			docker rmi mars-rover:latest --force; \
 			docker compose build --no-cache; \
@@ -69,3 +72,19 @@ run:
 		echo "ERROR: Debes especificar CMD=\"comando\""; exit 1; \
 	fi
 	docker compose exec $(SERVICE) sh -c "$(CMD)"
+
+# ------------------------
+# Unit Test Suite
+# ------------------------
+run-unit-tests:
+	docker compose exec $(DEFAULT_SERVICE) ./vendor/bin/phpunit --testdox
+
+# ------------------------
+# Acceptance Tests (Codeception)
+# ------------------------
+run-acceptance:
+	cp .env.testing .env
+	docker compose -f docker-compose.test.yml build
+	docker compose -f docker-compose.test.yml up -d
+	docker compose exec $(DEFAULT_SERVICE_TEST) ./vendor/bin/codecept run acceptance --steps
+	docker compose -f docker-compose.test.yml down -v

@@ -1,0 +1,64 @@
+# For more information: https://laravel.com/docs/sail
+services:
+    mars-rover-test:
+        build:
+            context: docker/php/apache
+            dockerfile: Dockerfile
+        container_name: mars-rover-test
+        env_file:
+            - .env.testing
+        volumes:
+            - .:/var/www/html
+        ports:
+            - '${APP_PORT:-82}:82'
+        networks:
+            - mars-rover-test
+        depends_on:
+            - rabbitmq-test
+            - redis-test
+
+    rabbitmq-consumer-test:
+        build:
+            context: docker/php/cli
+            dockerfile: Dockerfile
+        container_name: rabbitmq-consumer-test
+        ports:
+            - '83:83'
+        env_file:
+            - .env.testing
+        volumes:
+            - .:/var/www/html
+        networks:
+            - mars-rover-test
+        depends_on:
+            - redis-test
+            - rabbitmq-test
+
+    redis-test:
+        image: 'redis:7-alpine'
+        platform: linux/amd64
+        container_name: redis-test
+        ports:
+          - '${FORWARD_REDIS_PORT:-6380}:6379'
+        tmpfs:
+          - /data
+        networks:
+            - mars-rover-test
+        healthcheck:
+            test: ["CMD", "redis-cli", "ping"]
+            retries: 3
+            timeout: 5s
+
+    rabbitmq-test:
+        image: 'rabbitmq:management-alpine'
+        container_name: rabbitmq-test
+        ports:
+          - "5673:5672"
+          - "15673:15672"
+        networks:
+            - mars-rover-test
+
+
+networks:
+    mars-rover-test:
+        driver: bridge

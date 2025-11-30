@@ -1,0 +1,21 @@
+actor: AcceptanceTester
+modules:
+    enabled:
+        - \Tests\_support\Helper\Acceptance
+        - Laravel:
+            bootstrap_file: bootstrap/app.php
+            cleanup: false
+            run_database_migrations: false
+            database_connections: []
+            disable_exception_handling: false
+            disable_middleware: false
+            disable_events: false
+            disable_model_events: false
+            environment_file: .env
+            transaction: false
+        - REST:
+            part: JSON
+            depends: Laravel
+            url: /
+        - Asserts
+

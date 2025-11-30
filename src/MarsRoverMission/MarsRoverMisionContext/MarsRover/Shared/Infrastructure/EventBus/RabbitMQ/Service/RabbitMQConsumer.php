@@ -26,12 +26,12 @@ class RabbitMQConsumer implements EventConsumer
             $queue,
             '',
             false,
-            false,
+            true,
             false,
             false,
             function (AMQPMessage $message) {
                 $this->dispatcher->dispatch($message);
-                $message->ack();
+             //   $message->ack();
             }
         );
 
